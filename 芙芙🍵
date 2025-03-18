@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>芙芙🍵铁神器</title>
+    <style>
+        /* 全局样式 */
+        body {
+            background-color: #4B0082; /* 深紫色背景 */
+            color: #FFFFFF; /* 白色文字 */
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* 标题样式 */
+        h1 {
+            color: #D8BFD8; /* 浅紫色 */
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* 链接样式 */
+        a {
+            color: #D8BFD8; /* 浅紫色 */
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            transition: color 0.3s ease; /* 添加过渡效果 */
+        }
+
+        a:hover {
+            color: #FF00FF; /* 悬停时的颜色 */
+        }
+
+        /* 按钮容器样式 */
+        #button-container {
+            display: grid;
+            grid-template-columns: repeat(10, 50px); /* 每行10个按钮 */
+            gap: 10px;
+            max-width: 100%;
+        }
+
+        /* 按钮样式 */
+        button {
+            width: 50px;
+            height: 50px;
+            background-color: #800080; /* 紫色按钮 */
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease; /* 添加过渡效果 */
+        }
+
+        button:hover {
+            background-color: #9932CC; /* 悬停时的颜色 */
+        }
+
+        button.active {
+            background-color: #FF00FF; /* 亮起的按钮颜色 */
+        }
+
+        /* 响应式布局 */
+        @media (max-width: 600px) {
+            #button-container {
+                grid-template-columns: repeat(5, 50px); /* 小屏幕每行5个按钮 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 标题 -->
+    <h1>芙芙🍵铁神器</h1>
+
+    <!-- 链接 -->
+    <a href="https://www.example.com">芙芙🍵铁神器</a>
+
+    <!-- 按钮容器 -->
+    <div id="button-container"></div>
+
+    <script>
+        // JavaScript逻辑
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttonContainer = document.getElementById('button-container');
+
+            // 创建220个按钮
+            for (let i = 1; i <= 220; i++) {
+                const button = document.createElement('button');
+                button.textContent = i;
+                button.id = `button-${i}`;
+
+                // 检查localStorage中是否保存了按钮的状态
+                if (localStorage.getItem(`button-${i}`) === 'active') {
+                    button.classList.add('active');
+                }
+
+                // 添加点击事件
+                button.addEventListener('click', function() {
+                    button.classList.toggle('active');
+                    // 保存按钮状态到localStorage
+                    if (button.classList.contains('active')) {
+                        localStorage.setItem(`button-${i}`, 'active');
+                    } else {
+                        localStorage.removeItem(`button-${i}`);
+                    }
+                });
+
+                buttonContainer.appendChild(button);
+            }
+        });
+    </script>
+</body>
+</html>
